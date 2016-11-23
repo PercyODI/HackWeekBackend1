@@ -35,7 +35,7 @@ namespace HackWeekBackEnd1.Controllers
         {
             var client = new MongoClient("mongodb://ec2-35-164-77-251.us-west-2.compute.amazonaws.com:27017/test");
             var db = client.GetDatabase("test");
-            var collection = db.GetCollection<BsonDocument>("projects");
+            var collection = db.GetCollection<Project>("projects");
 
             try
             {
@@ -49,6 +49,13 @@ namespace HackWeekBackEnd1.Controllers
                     return Request.CreateResponse(HttpStatusCode.InternalServerError, "Invalid Model");
                 }
             }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError,
+                    "Error inserting document into database: " + ex.Message);
+            }
+
+            
 
         }
 
