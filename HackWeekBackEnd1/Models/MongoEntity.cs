@@ -10,6 +10,6 @@ namespace HackWeekBackEnd1.Models
     public class MongoEntity : IMongoEntity
     {
         [BsonId]
-        public ObjectId Id { get; set; }
+        public ObjectId _id { get; set; }
     }
 }

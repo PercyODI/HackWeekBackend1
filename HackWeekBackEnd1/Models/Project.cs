@@ -12,17 +12,11 @@ namespace HackWeekBackEnd1.Models
     {
         public Project()
         {
-            PeopleOnProject = new List<Person>();
+            people_on_project = new List<Person>();
         }
-
-        [BsonElement("name")]
-        public string Name { get; set; }
-
-        [BsonElement("difficulty")]
-        public int Difficulty { get; set; }
-
-        [BsonElement("people_on_project")]
-        public List<Person> PeopleOnProject { get; set; }
+        public string name { get; set; }
+        public int difficulty { get; set; }
+        public List<Person> people_on_project { get; set; }
 
         [BsonExtraElements]
         public BsonDocument CatchAll { get; set; }

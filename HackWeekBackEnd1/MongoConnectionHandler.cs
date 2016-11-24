@@ -19,7 +19,7 @@ namespace HackWeekBackEnd1
             const string databaseName = "test";
             IMongoDatabase db = mongoClient.GetDatabase(databaseName);
 
-            MongoCollection = db.GetCollection<T>(typeof(T).Name.ToLower() + "s'");
+            MongoCollection = db.GetCollection<T>(typeof(T).Name.ToLower() + "s");
         }
 
     }

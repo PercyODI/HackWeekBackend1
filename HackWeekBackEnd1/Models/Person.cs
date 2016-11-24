@@ -8,10 +8,7 @@ namespace HackWeekBackEnd1.Models
 {
     public class Person
     {
-        [BsonElement("name")]
-        public string Name { get; set; }
-
-        [BsonElement("expertise")]
-        public List<String> Expertise { get; set; }
+        public string name { get; set; }
+        public List<string> expertise { get; set; }
     }
 }

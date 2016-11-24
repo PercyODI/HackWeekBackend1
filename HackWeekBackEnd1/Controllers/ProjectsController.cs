@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using HackWeekBackEnd1.Models;
+using HackWeekBackEnd1.Services;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -16,32 +17,46 @@ namespace HackWeekBackEnd1.Controllers
         // GET: api/Project
         public IEnumerable<Project> Get()
         {
-            var client = new MongoClient("mongodb://ec2-35-164-77-251.us-west-2.compute.amazonaws.com:27017/test");
-            var db = client.GetDatabase("test");
-            var col = db.GetCollection<Project>("projects");
-            List<Project> projects = col.Find(x => true).ToList();
+            var projectsList = new ProjectService();
+            var projects = projectsList.GetProjectsDetails(100, 0);
 
             return projects;
         }
 
         // GET: api/Project/5
-        public string Get(int id)
+        public IHttpActionResult Get(string id)
         {
-            return "value";
+            try
+            {
+                var projectServer = new ProjectService();
+                var project = projectServer.GetById(id.ToString());
+
+                if (project == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(project);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+
+            
         }
 
         // POST: api/Project
         public HttpResponseMessage Post(Project value)
         {
-            var client = new MongoClient("mongodb://ec2-35-164-77-251.us-west-2.compute.amazonaws.com:27017/test");
-            var db = client.GetDatabase("test");
-            var collection = db.GetCollection<Project>("projects");
+            var projectService = new ProjectService();
+            
 
             try
             {
                 if (ModelState.IsValid)
                 {
-                    collection.InsertOne(value);
+                    projectService.Create(value);
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
                 else
@@ -60,13 +75,26 @@ namespace HackWeekBackEnd1.Controllers
         }
 
         // PUT: api/Project/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public IHttpActionResult Put(int id, [FromBody]string value)
         {
+            return Ok("id: " + id + ". Body: " + value);
         }
 
         // DELETE: api/Project/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(string id)
         {
+            try
+            {
+                var projectServer = new ProjectService();
+                projectServer.Delete(id);
+
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
         }
     }
 }
