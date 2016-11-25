@@ -13,7 +13,7 @@ namespace HackWeekBackEnd1.Services
         public IEnumerable<Project> GetProjectsDetails(int limit, int skip)
         {
             BsonDocument emptyFilter = new BsonDocument();
-            var sort = Builders<Project>.Sort.Descending("Name");
+            var sort = Builders<Project>.Sort.Descending("name");
             var projectsCursor = MongoConnectionHandler.MongoCollection.Find(emptyFilter)
                 .Sort(sort)
                 .Limit(limit)

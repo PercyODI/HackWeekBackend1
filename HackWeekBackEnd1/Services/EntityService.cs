@@ -12,7 +12,6 @@ namespace HackWeekBackEnd1.Services
     {
         protected readonly MongoConnectionHandler<T> MongoConnectionHandler = new MongoConnectionHandler<T>();
 
-
         public virtual void Create(T entity)
         {
             MongoConnectionHandler.MongoCollection.InsertOne(entity);
@@ -26,7 +25,7 @@ namespace HackWeekBackEnd1.Services
 
         public virtual T GetById(string id)
         {
-            var filter = Builders<T>.Filter.Eq("_id", new ObjectId(id));
+            FilterDefinition<T> filter = Builders<T>.Filter.Eq("_id", new ObjectId(id));
             return MongoConnectionHandler.MongoCollection.Find(filter).First();
         }
 
