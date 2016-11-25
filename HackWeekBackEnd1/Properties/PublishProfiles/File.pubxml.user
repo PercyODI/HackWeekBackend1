@@ -16,7 +16,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/21/2016 18:48:35</publishTime>
     </File>
     <File Include="bin/HackWeekBackEnd1.dll">
-      <publishTime>11/25/2016 14:50:58</publishTime>
+      <publishTime>11/25/2016 17:36:44</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>11/21/2016 18:48:18</publishTime>
@@ -93,6 +93,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>11/21/2016 18:47:55</publishTime>
     </File>
+    <File Include="bin/System.Web.Cors.dll">
+      <publishTime>11/25/2016 17:32:40</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.Cors.dll">
+      <publishTime>11/25/2016 17:32:45</publishTime>
+    </File>
     <File Include="bin/System.Web.Http.dll">
       <publishTime>11/21/2016 18:47:55</publishTime>
     </File>
@@ -103,7 +109,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/21/2016 18:47:44</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>11/21/2016 18:54:29</publishTime>
+      <publishTime>11/25/2016 17:32:46</publishTime>
     </File>
     <File Include="scripts/ai.0.15.0-build58334.js">
       <publishTime>11/21/2016 18:48:37</publishTime>

@@ -45,3 +45,6 @@ c:\users\pears\documents\visual studio 2015\Projects\HackWeekBackEnd1\HackWeekBa
 c:\users\pears\documents\visual studio 2015\Projects\HackWeekBackEnd1\HackWeekBackEnd1\obj\Debug\HackWeekBackEnd1.csprojResolveAssemblyReference.cache
 c:\users\pears\documents\visual studio 2015\Projects\HackWeekBackEnd1\HackWeekBackEnd1\obj\Debug\HackWeekBackEnd1.dll
 c:\users\pears\documents\visual studio 2015\Projects\HackWeekBackEnd1\HackWeekBackEnd1\obj\Debug\HackWeekBackEnd1.pdb
+c:\users\pears\documents\visual studio 2015\Projects\HackWeekBackEnd1\HackWeekBackEnd1\bin\System.Web.Cors.dll
+c:\users\pears\documents\visual studio 2015\Projects\HackWeekBackEnd1\HackWeekBackEnd1\bin\System.Web.Http.Cors.dll
+c:\users\pears\documents\visual studio 2015\Projects\HackWeekBackEnd1\HackWeekBackEnd1\bin\System.Web.Http.Cors.xml
