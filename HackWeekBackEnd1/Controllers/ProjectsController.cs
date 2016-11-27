@@ -9,6 +9,7 @@ using HackWeekBackEnd1.Models;
 using HackWeekBackEnd1.Services;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Newtonsoft.Json.Linq;
 
 namespace HackWeekBackEnd1.Controllers
 {
@@ -76,9 +77,28 @@ namespace HackWeekBackEnd1.Controllers
 
         // PUT: api/Project/5
         [HttpPut]
-        public IHttpActionResult Put(int id, [FromBody]string value)
+        public IHttpActionResult Put(string id, [FromBody]JToken value)
         {
-            return Ok("id: " + id + ". Body: " + value);
+            var projectService = new ProjectService();
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var bson = BsonDocument.Parse(value.ToJson());
+                    bson.Add("_id", new ObjectId(id));
+                    projectService.Update(bson);
+                    return Ok();
+                }
+                else
+                {
+                    return InternalServerError();
+                }
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError();
+            }
         }
 
         // DELETE: api/Project/5

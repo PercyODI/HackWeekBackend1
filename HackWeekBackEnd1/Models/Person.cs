@@ -10,5 +10,11 @@ namespace HackWeekBackEnd1.Models
     {
         public string name { get; set; }
         public List<string> expertise { get; set; }
+
+        public Person()
+        {
+            name = "";
+            expertise = new List<string>();
+        }
     }
 }
