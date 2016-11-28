@@ -27,6 +27,7 @@ namespace HackWeekBackEnd1.Services
             throw new NotImplementedException();
         }
 
+        // To be removed!! Bad Bad Bad!
         public void Update(BsonDocument entity)
         {
             // Hopefully the generic project won't interfere...
@@ -53,7 +54,7 @@ namespace HackWeekBackEnd1.Services
                 pushFields.Add("people_on_project", new BsonDocument().Add("name", entity.GetValue("add_person_to_project")));
                 push = true;
             }
-            if (entity.Contains("remove-person-from-project"))
+            if (entity.Contains("remove-personName-from-project"))
             {
                 pullFields.Add("people_on_project", entity.GetValue("remove_person_from_project"));
                 pull = true;
@@ -74,6 +75,25 @@ namespace HackWeekBackEnd1.Services
         
             
             var result = collection.UpdateMany(filter, update);
+        }
+
+        public void AddPersonToProject(string projectId, Person person)
+        {
+            var collection = MongoConnectionHandler.MongoCollection;
+            var filter = Builders<Project>.Filter.Eq("_id", new ObjectId(projectId));
+            var update = Builders<Project>.Update
+                .Push(x => x.people_on_project, person);
+            collection.UpdateOne(filter, update);
+        }
+
+        // Use FindOneAndUpdate if we want to return the new object
+        public void RemovePersonFromProject(string projectId, string personName)
+        {
+            var collection = MongoConnectionHandler.MongoCollection;
+            var filter = Builders<Project>.Filter.Eq("_id", new ObjectId(projectId));
+            var update = Builders<Project>.Update
+                .Pull("people_on_project", Builders<Person>.Filter.Eq("name", personName));
+            collection.UpdateOne(filter, update);
         }
     }
 }

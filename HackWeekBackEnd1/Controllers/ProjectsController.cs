@@ -13,9 +13,12 @@ using Newtonsoft.Json.Linq;
 
 namespace HackWeekBackEnd1.Controllers
 {
+    [RoutePrefix("api/projects")]
     public class ProjectsController : ApiController
     {
         // GET: api/Project
+        [Route("")]
+        [HttpGet]
         public IEnumerable<Project> Get()
         {
             var projectsList = new ProjectService();
@@ -25,6 +28,8 @@ namespace HackWeekBackEnd1.Controllers
         }
 
         // GET: api/Project/5
+        [Route("{id}")]
+        [HttpGet]
         public IHttpActionResult Get(string id)
         {
             try
@@ -48,6 +53,8 @@ namespace HackWeekBackEnd1.Controllers
         }
 
         // POST: api/Project
+        [Route("")]
+        [HttpPost]
         public HttpResponseMessage Post(Project value)
         {
             var projectService = new ProjectService();
@@ -76,6 +83,7 @@ namespace HackWeekBackEnd1.Controllers
         }
 
         // PUT: api/Project/5
+        [Route("{id}")]
         [HttpPut]
         public IHttpActionResult Put(string id, [FromBody]JToken value)
         {
@@ -102,6 +110,8 @@ namespace HackWeekBackEnd1.Controllers
         }
 
         // DELETE: api/Project/5
+        [Route("{id}")]
+        [HttpDelete]
         public IHttpActionResult Delete(string id)
         {
             try
@@ -116,5 +126,45 @@ namespace HackWeekBackEnd1.Controllers
                 return NotFound();
             }
         }
+
+        // POST: New person to project
+        // api/projects/{projectId}/people
+        [Route("{projectId}/people/")]
+        [HttpPost]
+        public IHttpActionResult PostPersonToProject(string projectId, [FromBody]Person value)
+        {
+            try
+            {
+                var projectServer = new ProjectService();
+                projectServer.AddPersonToProject(projectId, value);
+
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
+        }
+
+        // DELETE: Remove person from project
+        // api/projects/{projectId}/people/{personName}
+        [Route("{projectId}/people/{personName}")]
+        [HttpDelete]
+        public IHttpActionResult DeletePersonFromProject(string projectId, string personName)
+        {
+            try
+            {
+                var projectServer = new ProjectService();
+                projectServer.RemovePersonFromProject(projectId, personName);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError();
+            }
+        }
     }
+
+
 }
