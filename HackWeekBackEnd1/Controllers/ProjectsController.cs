@@ -85,8 +85,8 @@ namespace HackWeekBackEnd1.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var bson = BsonDocument.Parse(value.ToJson());
-                    bson.Add("_id", new ObjectId(id));
+                    var bson = BsonDocument.Parse(value.ToString());
+                    bson.Add("_id", id);
                     projectService.Update(bson);
                     return Ok();
                 }
