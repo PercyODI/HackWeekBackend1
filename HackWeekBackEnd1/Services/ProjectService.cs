@@ -89,10 +89,11 @@ namespace HackWeekBackEnd1.Services
         // Use FindOneAndUpdate if we want to return the new object
         public void RemovePersonFromProject(string projectId, string personName)
         {
+            var personToRemove = new Person {name=personName};
             var collection = MongoConnectionHandler.MongoCollection;
             var filter = Builders<Project>.Filter.Eq("_id", new ObjectId(projectId));
             var update = Builders<Project>.Update
-                .Pull("people_on_project", Builders<Person>.Filter.Eq("name", personName));
+                .PullFilter("people_on_project", Builders<Person>.Filter.Eq("name", personName));
             collection.UpdateOne(filter, update);
         }
     }
