@@ -164,6 +164,27 @@ namespace HackWeekBackEnd1.Controllers
                 return InternalServerError();
             }
         }
+
+        // POST: Add expertise to person in project
+        // api/projects/5836373085abf4ff08955dc4/people/Hayley%20Hutson/expertise
+        [Route("{projectId}/people/{personName}/expertise")]
+        [HttpPost]
+        public IHttpActionResult PostExpertiseToPerson(string projectId, string personName, [FromBody]Person value)
+        {
+            try
+            {
+                //Add name to person
+                value.name = personName;
+                var projectServer = new ProjectService();
+                projectServer.AddExpertiseToPerson(projectId, value);
+
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
+        }
     }
 
 
