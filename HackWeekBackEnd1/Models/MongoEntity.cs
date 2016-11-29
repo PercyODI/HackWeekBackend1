@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.IdGenerators;
 
 namespace HackWeekBackEnd1.Models
 {
     public class MongoEntity : IMongoEntity
     {
-        [BsonId]
-        public ObjectId _id { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string _id { get; set; }
     }
 }

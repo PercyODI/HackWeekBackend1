@@ -8,6 +8,6 @@ namespace HackWeekBackEnd1.Models
 {
     public interface IMongoEntity
     {
-        ObjectId _id { get; set; }
+        string _id { get; set; }
     }
 }

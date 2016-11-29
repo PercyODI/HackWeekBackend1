@@ -85,17 +85,15 @@ namespace HackWeekBackEnd1.Controllers
         // PUT: api/Project/5
         [Route("{id}")]
         [HttpPut]
-        public IHttpActionResult Put(string id, [FromBody]JToken value)
+        public IHttpActionResult Put(string id, [FromBody]Project value)
         {
             var projectService = new ProjectService();
 
             try
             {
-                if (ModelState.IsValid)
+                if (ModelState.IsValid && id.Equals(value._id))
                 {
-                    var bson = BsonDocument.Parse(value.ToString());
-                    bson.Add("_id", id);
-                    projectService.Update(bson);
+                    projectService.Update(value);
                     return Ok();
                 }
                 else
