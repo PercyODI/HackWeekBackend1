@@ -83,9 +83,10 @@ namespace HackWeekBackEnd1.Controllers
         }
 
         // PUT: api/Project/5
+        // NOTE: id in url MUST match _id from the project object given. Don't use id in url to bypass this
         [Route("{id}")]
         [HttpPut]
-        public IHttpActionResult Put(string id, [FromBody]Project value)
+        public IHttpActionResult UpdateProject(string id, [FromBody]Project value)
         {
             var projectService = new ProjectService();
 
@@ -98,16 +99,45 @@ namespace HackWeekBackEnd1.Controllers
                 }
                 else
                 {
-                    return InternalServerError();
+                    return BadRequest("Project model is not valid...");
                 }
             }
             catch (Exception ex)
             {
-                return InternalServerError();
+                return InternalServerError(ex);
             }
         }
 
-        // DELETE: api/Project/5
+        // Overloaded update project if no id is in route
+        // Requires an array of project objects to update
+        [Route("")]
+        [HttpPut]
+        public IHttpActionResult UpdateProject([FromBody] List<Project> values)
+        {
+            var projectService = new ProjectService();
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    foreach (var value in values)
+                    {
+                        projectService.Update(value);
+                    }
+                    return Ok();
+                }
+                else
+                { 
+                    return BadRequest("Expecting Array of Project Objects to update");
+                }
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        // DELETE: api/Project/583da92708767075382a4a63
         [Route("{id}")]
         [HttpDelete]
         public IHttpActionResult Delete(string id)
@@ -159,7 +189,7 @@ namespace HackWeekBackEnd1.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError();
+                return InternalServerError(ex);
             }
         }
 
