@@ -22,12 +22,16 @@ namespace HackWeekBackEnd1.Services
             return projectsCursor;
         }
         
-        public override void Update(Project project)
+        public override Project Update(Project project)
         { 
-            // Hopefully the generic project won't interfere...
             IMongoCollection<Project> collection = MongoConnectionHandler.MongoCollection;
             var filter = Builders<Project>.Filter.Eq("_id", project._id);
-            collection.ReplaceOne(filter, project);
+            var findAndReplaceOptions = new FindOneAndReplaceOptions<Project>()
+            {
+                ReturnDocument = ReturnDocument.After
+            };
+            return collection.FindOneAndReplace(filter, project, findAndReplaceOptions);
+            //collection.ReplaceOne(filter, project);
         }
 
         public void AddPersonToProject(string projectId, Person person)

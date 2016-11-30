@@ -55,7 +55,7 @@ namespace HackWeekBackEnd1.Controllers
         // POST: api/Project
         [Route("")]
         [HttpPost]
-        public HttpResponseMessage Post(Project value)
+        public IHttpActionResult Post(Project value)
         {
             var projectService = new ProjectService();
             
@@ -64,22 +64,18 @@ namespace HackWeekBackEnd1.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    projectService.Create(value);
-                    return Request.CreateResponse(HttpStatusCode.OK);
+                    Project newProject = projectService.Create(value);
+                    return Ok(newProject);
                 }
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.InternalServerError, "Invalid Model");
+                    return BadRequest("Project model is not valid...");
                 }
             }
             catch (Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.InternalServerError,
-                    "Error inserting document into database: " + ex.Message);
+                return InternalServerError(ex);
             }
-
-            
-
         }
 
         // PUT: api/Project/5
@@ -94,8 +90,8 @@ namespace HackWeekBackEnd1.Controllers
             {
                 if (ModelState.IsValid && id.Equals(value._id))
                 {
-                    projectService.Update(value);
-                    return Ok();
+                    Project updatedProject = projectService.Update(value);
+                    return Ok(updatedProject);
                 }
                 else
                 {
@@ -120,11 +116,13 @@ namespace HackWeekBackEnd1.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    List<Project> updatedProjects = new List<Project>();
                     foreach (var value in values)
                     {
-                        projectService.Update(value);
+                        Project updatedProject = projectService.Update(value);
+                        updatedProjects.Add(updatedProject);
                     }
-                    return Ok();
+                    return Ok(updatedProjects);
                 }
                 else
                 { 

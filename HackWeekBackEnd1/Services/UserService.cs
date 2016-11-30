@@ -24,7 +24,7 @@ namespace HackWeekBackEnd1.Services
 
         }
 
-        public override void Update(User entity)
+        public override User Update(User entity)
         {
             throw new NotImplementedException();
         }

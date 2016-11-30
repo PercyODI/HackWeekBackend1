@@ -12,9 +12,10 @@ namespace HackWeekBackEnd1.Services
     {
         protected readonly MongoConnectionHandler<T> MongoConnectionHandler = new MongoConnectionHandler<T>();
 
-        public virtual void Create(T entity)
+        public virtual T Create(T entity)
         {
             MongoConnectionHandler.MongoCollection.InsertOne(entity);
+            return entity;
         }
 
         public virtual void Delete(string id)
@@ -29,6 +30,6 @@ namespace HackWeekBackEnd1.Services
             return MongoConnectionHandler.MongoCollection.Find(filter).First();
         }
 
-        public abstract void Update(T entity);
+        public abstract T Update(T entity);
     }
 }

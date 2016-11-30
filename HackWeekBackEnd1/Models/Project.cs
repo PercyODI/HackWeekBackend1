@@ -14,8 +14,8 @@ namespace HackWeekBackEnd1.Models
         public int difficulty { get; set; }
         public List<Person> people_on_project { get; set; }
 
-        [BsonExtraElements]
-        public BsonDocument CatchAll { get; set; }
+        //[BsonExtraElements]
+        //public BsonDocument CatchAll { get; set; }
 
         public Project()
         {
