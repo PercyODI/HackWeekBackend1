@@ -10,6 +10,7 @@ namespace HackWeekBackEnd1.Services
 {
     public abstract class EntityService<T> : IEntityService<T> where T : IMongoEntity
     {
+        // Creates a property for services to access the ConnecitonHandler
         protected readonly MongoConnectionHandler<T> MongoConnectionHandler = new MongoConnectionHandler<T>();
 
         public virtual T Create(T entity)

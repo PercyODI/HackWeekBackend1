@@ -88,6 +88,7 @@ namespace HackWeekBackEnd1.Controllers
 
             try
             {
+                // Ensure the ModelState is valid, and the the ID from the project matches the ID given in the URL
                 if (ModelState.IsValid && id.Equals(value._id))
                 {
                     Project updatedProject = projectService.Update(value);
@@ -152,9 +153,10 @@ namespace HackWeekBackEnd1.Controllers
                 return NotFound();
             }
         }
+<<<<<<< HEAD
 
         
+=======
+>>>>>>> Work on comments
     }
-
-
 }
