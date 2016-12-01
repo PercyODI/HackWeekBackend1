@@ -10,7 +10,7 @@ namespace HackWeekBackEnd1.Services
 {
     public class UserService : EntityService<User>
     {
-        // NOTE: Currently unsed service. Could be utilized for user authentication
+        // NOTE: Currently unsed service. Could be used for user authentication
 
         public IEnumerable<User> GetUsersDetails(int limit, int skip)
         {

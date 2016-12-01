@@ -7,6 +7,7 @@ using System.Web.Http;
 using HackWeekBackEnd1.Models;
 using HackWeekBackEnd1.Services;
 
+// Currently Unused controller. Could be used for user authentication
 namespace HackWeekBackEnd1.Controllers
 {
     public class UsersController : ApiController

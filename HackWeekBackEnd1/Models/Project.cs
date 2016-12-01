@@ -7,6 +7,11 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace HackWeekBackEnd1.Models
 {
+    // Defines a project.
+
+    // Any extra elements are ignored by WebAPI. If update is applied to the
+    // object, the extra elements stored in the database will be overwritten
+    // Missing elements are given default values
     [BsonIgnoreExtraElements]
     public class Project : MongoEntity
     {
@@ -16,9 +21,7 @@ namespace HackWeekBackEnd1.Models
         public List<Skill> needed_skills { get; set; }
         public List<Person> people_on_project { get; set; }
 
-        //[BsonExtraElements]
-        //public BsonDocument CatchAll { get; set; }
-
+        // Set default values for any missing
         public Project()
         {
             name = "";

@@ -6,6 +6,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace HackWeekBackEnd1.Models
 {
+    // Unused user model. Could be used for user authentication
     [BsonIgnoreExtraElements]
     public class User : MongoEntity
     {

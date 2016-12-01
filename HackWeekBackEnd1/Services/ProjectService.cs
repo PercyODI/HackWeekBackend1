@@ -24,16 +24,11 @@ namespace HackWeekBackEnd1.Services
             return projectsCursor;
         }
         
-<<<<<<< HEAD
-        public override Project Update(Project project)
-=======
         // Replaces the existing project in the database with the one provided.
-        public override void Update(Project project)
->>>>>>> Work on comments
+        public override Project Update(Project project)
         { 
             IMongoCollection<Project> collection = MongoConnectionHandler.MongoCollection;
             var filter = Builders<Project>.Filter.Eq("_id", project._id);
-<<<<<<< HEAD
             var findAndReplaceOptions = new FindOneAndReplaceOptions<Project>()
             {
                 ReturnDocument = ReturnDocument.After
@@ -41,10 +36,5 @@ namespace HackWeekBackEnd1.Services
             return collection.FindOneAndReplace(filter, project, findAndReplaceOptions);
             //collection.ReplaceOne(filter, project);
         }
-        
-=======
-            collection.ReplaceOne(filter, project);
-        }
->>>>>>> Work on comments
     }
 }

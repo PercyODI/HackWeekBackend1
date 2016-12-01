@@ -153,10 +153,5 @@ namespace HackWeekBackEnd1.Controllers
                 return NotFound();
             }
         }
-<<<<<<< HEAD
-
-        
-=======
->>>>>>> Work on comments
     }
 }

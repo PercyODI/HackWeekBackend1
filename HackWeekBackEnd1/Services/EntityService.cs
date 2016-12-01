@@ -8,6 +8,7 @@ using MongoDB.Driver;
 
 namespace HackWeekBackEnd1.Services
 {
+    // Provides a default set of services that can be called to modify a document in the database.
     public abstract class EntityService<T> : IEntityService<T> where T : IMongoEntity
     {
         // Creates a property for services to access the ConnecitonHandler

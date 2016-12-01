@@ -10,20 +10,12 @@ namespace HackWeekBackEnd1.Models
     public class Person
     {
         public string name { get; set; }
-<<<<<<< HEAD
         public List<Skill> skills { get; set; }
-=======
-        public List<string> skills { get; set; }
->>>>>>> Work on comments
 
         public Person()
         {
             name = "";
-<<<<<<< HEAD
             skills = new List<Skill>();
-=======
-            skills = new List<string>();
->>>>>>> Work on comments
         }
     }
 }

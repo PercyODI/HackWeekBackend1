@@ -5,6 +5,7 @@ using System.Web;
 
 namespace HackWeekBackEnd1.Models
 {
+    // Defines a skill that can be added to a person in a project
     public class Skill
     {
         public string name { get; set; }
