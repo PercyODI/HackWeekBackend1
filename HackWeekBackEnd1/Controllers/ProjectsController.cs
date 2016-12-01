@@ -153,64 +153,7 @@ namespace HackWeekBackEnd1.Controllers
             }
         }
 
-        // POST: New person to project
-        // api/projects/{projectId}/people
-        [Route("{projectId}/people/")]
-        [HttpPost]
-        public IHttpActionResult PostPersonToProject(string projectId, [FromBody]Person value)
-        {
-            try
-            {
-                var projectServer = new ProjectService();
-                projectServer.AddPersonToProject(projectId, value);
-
-                return Ok();
-            }
-            catch (Exception)
-            {
-                return InternalServerError();
-            }
-        }
-
-        // DELETE: Remove person from project
-        // api/projects/{projectId}/people/{personName}
-        [Route("{projectId}/people/{personName}")]
-        [HttpDelete]
-        public IHttpActionResult DeletePersonFromProject(string projectId, string personName)
-        {
-            try
-            {
-                var projectServer = new ProjectService();
-                projectServer.RemovePersonFromProject(projectId, personName);
-
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
-        }
-
-        // POST: Add expertise to person in project
-        // api/projects/5836373085abf4ff08955dc4/people/Hayley%20Hutson/expertise
-        [Route("{projectId}/people/{personName}/expertise")]
-        [HttpPost]
-        public IHttpActionResult PostExpertiseToPerson(string projectId, string personName, [FromBody]Person value)
-        {
-            try
-            {
-                //Add name to person
-                value.name = personName;
-                var projectServer = new ProjectService();
-                projectServer.AddExpertiseToPerson(projectId, value);
-
-                return Ok();
-            }
-            catch (Exception)
-            {
-                return InternalServerError();
-            }
-        }
+        
     }
 
 

@@ -141,6 +141,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\IMongoEntity.cs" />
     <Compile Include="Models\MongoEntity.cs" />
     <Compile Include="Models\Person.cs" />

@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using MongoDB.Bson.Serialization.Attributes;
 
 namespace HackWeekBackEnd1.Models
 {
-    public class Person
+    public class Skill
     {
         public string name { get; set; }
-        public List<Skill> skills { get; set; }
+        public int level { get; set; }
 
-        public Person()
+        public Skill()
         {
             name = "";
-            skills = new List<Skill>();
+            level = 0;
         }
     }
 }

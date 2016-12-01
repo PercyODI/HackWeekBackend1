@@ -12,6 +12,8 @@ namespace HackWeekBackEnd1.Models
     {
         public string name { get; set; }
         public int difficulty { get; set; }
+        public string description { get; set; }
+        public List<Skill> needed_skills { get; set; }
         public List<Person> people_on_project { get; set; }
 
         //[BsonExtraElements]
@@ -21,7 +23,9 @@ namespace HackWeekBackEnd1.Models
         {
             name = "";
             difficulty = -1;
+            description = "";
             people_on_project = new List<Person>();
+            needed_skills = new List<Skill>();
         }
     }
 }
